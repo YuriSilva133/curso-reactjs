@@ -1,17 +1,22 @@
-import './index.css'
+import './index.scss'
 
 import { Link } from "react-router-dom";
 
 export default function Contato() {
-    return(
-        <div className='pagina-contato'>
+    return (
+        <div className='pagina-contato pagina'>
 
-            <Link to={'/'}>
-                <i className='fa fa-arrow-left voltar'></i>
-            </Link>
+            <header className='cabecalho'>
+                <Link to={'/'}>
+                    <i className='fa fa-arrow-left voltar'></i>
+                </Link>
 
-            <h1>Contato</h1>
-            <img className='icone' src="/assets/images/contato.png" alt="icone de contato" />
+                <h1>Contato</h1>
+            </header>
+
+            <section className='secao'>
+                <img className='icone' src="/assets/images/contato.png" alt="icone de contato" />
+            </section>
         </div>
     )
 }
