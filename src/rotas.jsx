@@ -10,7 +10,6 @@ export default function Navegacao() {
             <Routes>
                 <Route path='/' element={<App />} />
                 <Route path='/contato' element={<Contato />} />
-                
                 <Route path='*' element = {<NaoEncontrado/>} />
             </Routes>
         </BrowserRouter>
