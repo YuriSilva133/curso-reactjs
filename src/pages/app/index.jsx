@@ -15,11 +15,15 @@ export default function App() {
         <h1>Minha pagina!</h1>
         <ul>
           <li>
-            <Link to='/contato'> contato </Link>
+            <Link to='/contato'>Ir para Contato </Link>
           </li>
           <li>
-            <Link to= '/eventos'> eventos </Link>
+            <Link to= '/eventos'>Ir para Eventos </Link>
           </li>
+          <li>
+            <Link to= '/varestado'>Ir para Variavel de Estado </Link>
+          </li>
+
         </ul>
       </section>
 

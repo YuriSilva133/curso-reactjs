@@ -62,6 +62,10 @@ a, a:visited{
       font: 400 20px 'poppins';
     }
 
+    input[type=checkbox], input[type=radio]{
+      min-width: auto;
+    }
+
     button{
       padding: 7px 12px;
       border-radius: 3px;
