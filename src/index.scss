@@ -22,8 +22,8 @@ a, a:visited{
     
     h1{
       margin-right: 5px;
-      color: rgb(36, 26, 26);
       font: 700 28px 'poppins';
+      color: rgb(36, 26, 26);
     }
 
     i{
@@ -31,35 +31,33 @@ a, a:visited{
     }
   }
   .secao {
-    background-color: #fff;
-    box-shadow: 0px 0px 15px 2px #dadada;
+      background-color: #fff;
+      box-shadow: 0px 0px 15px 2px #dadada;
 
-    padding: 30px;
-    border-radius: 5px;
+      padding: 30px;
+      border-radius: 5px;
 
-    margin: 50px 60px;
-    max-width: 1000px;
-    font: 400 20px 'poppins';
+      margin: 50px 60px;
+      max-width: 1000px;
+      font: 400 20px 'poppins';
     
     h1{
-      
-      color: #3b3b3b;
       font: 700 25px 'poppins';
+      color: #3b3b3b;
       margin-bottom: 30px;
     }
 
     input, select, textarea{
+      min-width: 400px;
       padding: 5px;
       border: 2px solid #d6d6d6;
+
+      font: 400 20px 'poppins';
       color: #535353;
 
       border-radius: 3px;
       border-width: 1px;
-
-      min-width: 400px;
-      
       outline: none;
-      font: 400 20px 'poppins';
     }
 
     input[type=checkbox], input[type=radio]{
@@ -70,14 +68,11 @@ a, a:visited{
       padding: 7px 12px;
       border-radius: 3px;
 
+      font: 400 18px 'poppins';
       color: #FFF;
       background-color: #4b75ff;
 
-      
       border: none;
-
-      font: 400 18px 'poppins';
     }
-
   }
 }

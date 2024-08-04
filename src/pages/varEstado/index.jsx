@@ -23,6 +23,9 @@ export default function VarEstado() {
     const [cupom, setCupom] = useState('');
     const [totalIng, setTotalIng] = useState(0);
 
+    const [novaMeta, setNovaMeta] = useState('');
+    const [listaMetas, setListaMetas] = useState([])
+
     function aumentar() {
         //contador++
         if (contador < 10) {
@@ -40,7 +43,7 @@ export default function VarEstado() {
     }
 
     function calcularIngresso() {
-       let tot = calcularTotalingresso(qtdIng, meioIng, cupom)
+        let tot = calcularTotalingresso(qtdIng, meioIng, cupom)
 
         setTotalIng(tot)
     }
@@ -50,11 +53,40 @@ export default function VarEstado() {
         setRes(soma)
     }
 
+    function adicionarMeta() {
+        if (novaMeta != '') {
+            //listaMetas.push(novaMeta)
+            setListaMetas([...listaMetas, novaMeta])
+            setNovaMeta('')
+        }
+    }
+
+    function teclaApertada(e) {
+        if (e.key == 'Enter') {
+            adicionarMeta()
+        }
+    }
+
     return (
         <div className='pagina-varestado pagina'>
             <header className='cabecalho'>
                 <h1> ReactJS | Variavel de Estado</h1>
             </header>
+
+            <div className='secao metas'>
+                <h1>Metas para os proximos 5 anos</h1>
+
+                <div className='entrada'>
+                    <input type="text" placeholder='Digite sua meta aqui' onKeyUp={teclaApertada} value={novaMeta} onChange={e => setNovaMeta(e.target.value)}/>
+                    <button onClick={adicionarMeta}> Adicionar </button>
+                </div>
+
+                <ul>
+                    {listaMetas.map(item =>
+                        <li> {item} </li>
+                    )}
+                </ul>
+            </div>
 
             <div className='secao ingresso'>
                 <h1>Venda de Ingressos</h1>
