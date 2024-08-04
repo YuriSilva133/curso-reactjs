@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import { tratarNumero } from '../../utils/conversao.js'
 
-import {calcularTotalingresso} from '../../services/ingresso.js'
+import { calcularTotalingresso } from '../../services/ingresso.js'
 
 export default function VarEstado() {
     //let contador = 0
@@ -26,6 +26,11 @@ export default function VarEstado() {
     const [novaMeta, setNovaMeta] = useState('');
     const [listaMetas, setListaMetas] = useState([])
     const [editando, setEditando] = useState(-1)
+
+    const [plano, setPlano] = useState('')
+    const [situacao, setSituacao] = useState('')
+    const [cor, setCor] = useState('')
+    const [listaPlanos, setListaPlanos] = useState([])
 
     function aumentar() {
         //contador++
@@ -56,17 +61,17 @@ export default function VarEstado() {
 
     function adicionarMeta() {
         //listaMetas.push(novaMeta)
-        
+
         if (novaMeta !== '') {
             if (editando === -1) {
                 setListaMetas([...listaMetas, novaMeta])
                 setNovaMeta('')
             }
-            else{
+            else {
                 listaMetas[editando] = novaMeta;
                 setListaMetas([...listaMetas])
                 setNovaMeta('')
-                setEditando(-1) 
+                setEditando(-1)
             }
         }
     }
@@ -77,14 +82,28 @@ export default function VarEstado() {
         }
     }
 
-    function removerMeta(pos){
+    function removerMeta(pos) {
         listaMetas.splice(pos, 1)
         setListaMetas([...listaMetas])
     }
 
-    function alterarMeta(pos){
+    function alterarMeta(pos) {
         setNovaMeta(listaMetas[pos])
         setEditando(pos)
+    }
+
+    function adicionarPlano() {
+        let novoPlano = {
+            titulo: plano,
+            tempo: situacao,
+            tema: cor
+        }
+
+        setListaPlanos([...listaPlanos, novoPlano])
+
+        setPlano('')
+        setSituacao('')
+        setCor('')
     }
 
     return (
@@ -93,20 +112,43 @@ export default function VarEstado() {
                 <h1> ReactJS | Variavel de Estado</h1>
             </header>
 
+            <div className='secao planos'>
+                <h1> Meus planos atuais</h1>
+
+                <div className='entrada'>
+                    <input type="text" placeholder='Meu plano' value={plano} onChange={e => setPlano(e.target.value)} />
+                    <input type="text" placeholder='situação atual' value={situacao} onChange={e => setSituacao(e.target.value)} />
+                    <input type="text" placeholder='Cor de identificação' value={cor} onChange={e => setCor(e.target.value)} />
+                    <button onClick={adicionarPlano}>Adicionar Plano</button>
+                </div>
+
+                <div className='lista'>
+                    {listaPlanos.map((item, pos) =>
+                        <div className='plano' key={pos}>
+                            <div className='cor' style={{ backgroundColor: item.tema }}> &nbsp;</div>
+                            <div>
+                                <h1> {item.titulo} </h1>
+                                <h2> {item.tempo} </h2>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+
             <div className='secao metas'>
                 <h1>Metas para os proximos 5 anos</h1>
 
                 <div className='entrada'>
-                    <input type="text" placeholder='Digite sua meta aqui' onKeyUp={teclaApertada} value={novaMeta} onChange={e => setNovaMeta(e.target.value)}/>
+                    <input type="text" placeholder='Digite sua meta aqui' onKeyUp={teclaApertada} value={novaMeta} onChange={e => setNovaMeta(e.target.value)} />
                     <button onClick={adicionarMeta}> Adicionar </button>
                 </div>
 
                 <ul>
                     {listaMetas.map((item, pos) =>
-                        <li key={pos}> 
+                        <li key={pos}>
                             <i class="fa-solid fa-pen-to-square" onClick={() => alterarMeta(pos)}></i> &nbsp;
                             <i class="fa-solid fa-xmark" onClick={() => removerMeta(pos)} ></i> &nbsp;
-                            {item} 
+                            {item}
                         </li>
                     )}
                 </ul>
@@ -117,16 +159,16 @@ export default function VarEstado() {
                 <div className='entrada'>
                     <div>
                         <label>Quantidade:</label>
-                        <input type="text" value={qtdIng} onChange={e => setQtdIng(e.target.value)}/>
+                        <input type="text" value={qtdIng} onChange={e => setQtdIng(e.target.value)} />
                     </div>
                     <div>
                         <label>Meia Entrada:</label>
-                        <input type="checkbox" checked={meioIng} onChange={e => setMeioIng(e.target.checked)}/>
+                        <input type="checkbox" checked={meioIng} onChange={e => setMeioIng(e.target.checked)} />
                     </div>
 
                     <div>
                         <label>Cupom:</label>
-                        <input type="text" value={cupom} onChange={e => setCupom(e.target.value)}/>
+                        <input type="text" value={cupom} onChange={e => setCupom(e.target.value)} />
                     </div>
 
                     <div>
