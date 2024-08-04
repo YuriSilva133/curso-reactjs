@@ -25,6 +25,7 @@ export default function VarEstado() {
 
     const [novaMeta, setNovaMeta] = useState('');
     const [listaMetas, setListaMetas] = useState([])
+    const [editando, setEditando] = useState(-1)
 
     function aumentar() {
         //contador++
@@ -54,17 +55,36 @@ export default function VarEstado() {
     }
 
     function adicionarMeta() {
-        if (novaMeta != '') {
-            //listaMetas.push(novaMeta)
-            setListaMetas([...listaMetas, novaMeta])
-            setNovaMeta('')
+        //listaMetas.push(novaMeta)
+        
+        if (novaMeta !== '') {
+            if (editando === -1) {
+                setListaMetas([...listaMetas, novaMeta])
+                setNovaMeta('')
+            }
+            else{
+                listaMetas[editando] = novaMeta;
+                setListaMetas([...listaMetas])
+                setNovaMeta('')
+                setEditando(-1) 
+            }
         }
     }
 
     function teclaApertada(e) {
-        if (e.key == 'Enter') {
+        if (e.key === 'Enter') {
             adicionarMeta()
         }
+    }
+
+    function removerMeta(pos){
+        listaMetas.splice(pos, 1)
+        setListaMetas([...listaMetas])
+    }
+
+    function alterarMeta(pos){
+        setNovaMeta(listaMetas[pos])
+        setEditando(pos)
     }
 
     return (
@@ -82,8 +102,12 @@ export default function VarEstado() {
                 </div>
 
                 <ul>
-                    {listaMetas.map(item =>
-                        <li> {item} </li>
+                    {listaMetas.map((item, pos) =>
+                        <li key={pos}> 
+                            <i class="fa-solid fa-pen-to-square" onClick={() => alterarMeta(pos)}></i> &nbsp;
+                            <i class="fa-solid fa-xmark" onClick={() => removerMeta(pos)} ></i> &nbsp;
+                            {item} 
+                        </li>
                     )}
                 </ul>
             </div>
